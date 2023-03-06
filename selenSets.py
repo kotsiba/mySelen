@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 proxy = ['x.xxx.xx.xx:xx']
 # proxy_list = ['x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx']
@@ -93,10 +94,39 @@ try:
     # from selenium.webdriver import Keys
 
     browser.find_element(By.TAG_NAME, 'name_tag').send_keys(Keys.DOWN)
-    
-    
-    
 
+    # from selenium.webdriver.common.action_chains import ActionChains
+
+    menu = browser.find_element(By.CSS_SELECTOR, '.nav')
+    hidden_submenu = browser.find_element(By.CSS_SELECTOR, '.nav #submenu1')
+    ActionChains(browser).move_to_element(menu).click(hidden_submenu).perform()
+    
+        # or
+    
+    action = ActionChains(browser)
+    time.sleep(1)
+    action.move_to_element(menu)
+    time.sleep(1)
+    action.click(hidden_submenu)
+    time.sleep(1)
+    action.perform()
+    
+        # or
+    
+    target = browser.find_element(By.ID, 'like')
+    actions = ActionChains(browser).move_to_element(target).click().perform()
+    
+        # or
+
+    target = browser.find_element(By.ID, 'like')
+    action = ActionChains(browser)
+    time.sleep(1)
+    action.move_to_element(target)
+    time.sleep(1)
+    action.click()
+    time.sleep(1)
+    action.perform()
+    
 
 finally:
     browser.close()
