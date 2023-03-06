@@ -2,13 +2,15 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver import Keys
 
 proxy = ['x.xxx.xx.xx:xx']
 # proxy_list = ['x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx']
 options_chrome = webdriver.ChromeOptions()
 options_chrome.add_extension('extension.crx')
-options_chrome.add_argument('--headless')   # or the same arg '--disable-gpu'
-options_chrome.add_argument(r'user-data-dir=C:\Users\user\AppData\Local\Google\Chrome\User Data')   # add profile from chrome
+options_chrome.add_argument('--headless')  # or the same arg '--disable-gpu'
+options_chrome.add_argument(
+    r'user-data-dir=C:\Users\user\AppData\Local\Google\Chrome\User Data')  # add profile from chrome
 options_chrome.add_argument('--proxy-server=%s' % proxy)
 
 url = 'https://some.url'
@@ -17,7 +19,7 @@ url = 'https://some.url'
 
 try:
     # browser = webdriver.Chrome('chromedriver.exe')
-    
+
     s = Service(executable_path='chromedriver.exe')
     browser = webdriver.Chrome(service=s, options=options_chrome)
 
@@ -31,10 +33,10 @@ try:
     browser.find_element(By.CSS_SELECTOR, "css_rules")  # ???
     browser.find_element(By.LINK_TEXT, "exact_text")
     browser.find_element(By.PARTIAL_LINK_TEXT, "part_of_text")
-    
+
     a = browser.find_element(By.TAG_NAME, 'a')
     print(a.get_attribute('href'))
-    
+
     value = browser.find_element(By.CLASS_NAME, 'class_name').text
     print(value)
     # value = browser.find_element(By.CLASS_NAME, 'class_name')
@@ -58,41 +60,44 @@ try:
     checkbox = browser.find_elements(By.CLASS_NAME, "class_name")
     for item in checkbox:
         print(item.get_attribute('name_attribute'))
-        
+
     browser.back()
     browser.forward()
     browser.refresh()
     browser.maximize_window()
     browser.fullscreen_window()
-    
+
     browser.implicitly_wait(10)
-    
+
     browser.get_screenshot_as_file('file.jpg')
     browser.get_screenshot_as_base64()
-    
+
     # scripts
     browser.execute_script("script_code")
     element = browser.find_element(By.XPATH, "//tag[@attribute='attr_name']")
     browser.execute_script("return arguments[0].scrollIntoView(true);", element)
-    
-    browser.execute_script("return document.title;")    # return title of open document
-    
+
+    browser.execute_script("return document.title;")  # return title of open document
+
     var = [x.tag_name for x in
            browser.execute_script("return document.anchors;")]  # return all document anchors for scrolling
 
-    browser.execute_script("return document.getElementByClassName('name_class');")   # return all elements with 'name_class'
+    browser.execute_script(
+        "return document.getElementByClassName('name_class');")  # return all elements with 'name_class'
     browser.execute_script(
         "return document.getElementByTagName('name_tag');")  # return all elements with 'name_tag'
+
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll to last pixel
+    browser.execute_script("window.scrollBy(0,5000);")
+
+    # from selenium.webdriver import Keys
+
+    browser.find_element(By.TAG_NAME, 'name_tag').send_keys(Keys.DOWN)
     
-    browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")   # scroll to last pixel
-    browser.execute_script("window.scrollBy(0,5000)"
-                           
-                           
     
+    
+
 
 finally:
     browser.close()
     browser.quit()
-
-
-
