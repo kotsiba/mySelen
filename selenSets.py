@@ -100,9 +100,9 @@ try:
     menu = browser.find_element(By.CSS_SELECTOR, '.nav')
     hidden_submenu = browser.find_element(By.CSS_SELECTOR, '.nav #submenu1')
     ActionChains(browser).move_to_element(menu).click(hidden_submenu).perform()
-    
-        # or
-    
+
+    # or
+
     action = ActionChains(browser)
     time.sleep(1)
     action.move_to_element(menu)
@@ -110,13 +110,13 @@ try:
     action.click(hidden_submenu)
     time.sleep(1)
     action.perform()
-    
-        # or
-    
+
+    ## or
+
     target = browser.find_element(By.ID, 'like')
     actions = ActionChains(browser).move_to_element(target).click().perform()
-    
-        # or
+
+    ## or
 
     target = browser.find_element(By.ID, 'like')
     action = ActionChains(browser)
@@ -127,6 +127,12 @@ try:
     time.sleep(1)
     action.perform()
     
+    ## scroll_by_amount()
+    
+    ???
+    
+    
+
 
 finally:
     browser.close()
