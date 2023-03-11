@@ -39,7 +39,7 @@ try:
     browser.find_element(By.LINK_TEXT, "exact_text")
     browser.find_element(By.PARTIAL_LINK_TEXT, "part_of_text")
     
-    element.clear() # clear the input box
+    element.clear() # clear the input field
 
     a = browser.find_element(By.TAG_NAME, 'a')
     print(a.get_attribute('href'))
