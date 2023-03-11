@@ -4,6 +4,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+
 
 proxy = ['x.xxx.xx.xx:xx']
 # proxy_list = ['x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx']
@@ -52,6 +54,10 @@ try:
     browser.find_element(By.XPATH, "//tag/*[@attribute='attr_name']")
 
     browser.find_element(By.XPATH, "//div[@class='text']/p[2]")
+    
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()
+    WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()   # from selenium.webdriver.support.ui import WebDriverWait
+    
 
     browser.find_elements(By.XPATH, "//div[@class='text']/p[2]")
     print(sum([int(x.text) for x in browser.find_elements(By.XPATH, "//div[@class='text']/p[2]")]))
@@ -76,7 +82,7 @@ try:
     # scripts
     browser.execute_script("script_code")
     element = browser.find_element(By.XPATH, "//tag[@attribute='attr_name']")
-    browser.execute_script("return arguments[0].scrollIntoView(true);", element)
+    browser.execute_script("return arguments[0].scrollIntoView(true);", element)    # for element will in view space
 
     browser.execute_script("return document.title;")  # return title of open document
 
