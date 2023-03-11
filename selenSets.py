@@ -28,7 +28,8 @@ try:
     browser = webdriver.Chrome(service=s, options=options_chrome)
 
     browser.get(url)
-
+    
+   
     button = browser.find_element(By.ID, "id_name")
     button.click()
     browser.find_element(By.NAME, "name_name")  # attribute name 'value'
@@ -37,6 +38,8 @@ try:
     browser.find_element(By.CSS_SELECTOR, "css_rules")  # ???
     browser.find_element(By.LINK_TEXT, "exact_text")
     browser.find_element(By.PARTIAL_LINK_TEXT, "part_of_text")
+    
+    element.clear() # clear the input box
 
     a = browser.find_element(By.TAG_NAME, 'a')
     print(a.get_attribute('href'))
