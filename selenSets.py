@@ -142,6 +142,8 @@ try:
     time.sleep(1)
     action.perform()
     
+    action_chains.drag_and_drop(element, target).perform()  # drag and drop for element
+    
     ## scroll_by_amount()
     
     ActionChains(browser).move_to_element(element).scroll_by_amount(1,500).perform()
