@@ -6,7 +6,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.support.ui import Select
 
 proxy = ['x.xxx.xx.xx:xx']
 # proxy_list = ['x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx', 'x.xxx.xx.xx:xx']
@@ -164,6 +164,12 @@ try:
         print(browser.execute_script("return document.title;"), browser.window_handles[x])
     
     
+    # from selenium.webdriver.support.ui import Select
+    select = Select(browser.find_element(By.ID, 'city'))
+    select.select_by_index(index)
+    select.select_by_visible_text("text")
+    select.select_by_value(value)
+    deselect_all()
 
 
 finally:
