@@ -38,6 +38,10 @@ try:
     browser.find_element(By.CLASS_NAME, "class_name").click()
     browser.find_element(By.TAG_NAME, "tag_name").send_keys('key')
     browser.find_element(By.CSS_SELECTOR, "css_rules")  # ???
+        browser.find_element(By.CSS_SELECTOR, "tag.class_name nexttag.attr_name") # css 'space'= xpath //
+        browser.find_element(By.CSS_SELECTOR, "tag1#id tag2 tag3")
+        browser.find_element(By.CSS_SELECTOR, "tag.class_name") # '#' for class value
+        browser.find_element(By.CSS_SELECTOR, "tag#id_name")    # '.' for id value
     browser.find_element(By.LINK_TEXT, "exact_text")
     browser.find_element(By.PARTIAL_LINK_TEXT, "part_of_text")
     
@@ -45,6 +49,10 @@ try:
 
     a = browser.find_element(By.TAG_NAME, 'a')
     print(a.get_attribute('href'))
+    # or
+    link = browser.find_element(By.TAG_NAME, 'a').get_attribute('href')
+    .get_attribute('innerText')
+    .get_attribute('innerHtml')
 
     value = browser.find_element(By.CLASS_NAME, 'class_name').text
     print(value)
