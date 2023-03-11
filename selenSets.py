@@ -94,9 +94,13 @@ try:
         "return document.getElementByClassName('name_class');")  # return all elements with 'name_class'
     browser.execute_script(
         "return document.getElementByTagName('name_tag');")  # return all elements with 'name_tag'
-
+    
+    ## scrolling
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")  # scroll to last pixel
     browser.execute_script("window.scrollBy(0,5000);")
+    ActionChains(browser).move_to_element(element).scroll_by_amount(1,500).perform()
+    
+    
 
     # from selenium.webdriver import Keys
 
@@ -136,7 +140,22 @@ try:
     
     ## scroll_by_amount()
     
-    ???
+    ActionChains(browser).move_to_element(element).scroll_by_amount(1,500).perform()
+    
+    # windows and tabs
+    
+    browser.current_window_handle()
+    browser.window_handles()
+    browser.switch_to.window(window_handles[0])
+    
+    browser.get(url) # first tab, standart open
+    browser.execute_script('window.open("https://some1.url","_blank1");') # open the next tab blank1
+    browser.execute_script('window.open("https://some2.url","_blank2");') # open the next tab blank2
+    
+    for x in range(len(browser.window_handles)):
+        browser.switch_to.window(browser.window_handles[x])
+        time.sleep(1)
+        print(browser.execute_script("return document.title;"), browser.window_handles[x])
     
     
 
