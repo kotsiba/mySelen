@@ -162,7 +162,13 @@ try:
         browser.switch_to.window(browser.window_handles[x])
         time.sleep(1)
         print(browser.execute_script("return document.title;"), browser.window_handles[x])
+        
+        
+    ## iframe
+    driver.switch_to_frame(“name_iframe”)
+    driver.switch_to_frame("frame_name.0.child")
     
+    driver.switch_to_default_content()
     
     # from selenium.webdriver.support.ui import Select
     select = Select(browser.find_element(By.ID, 'city'))
@@ -170,6 +176,10 @@ try:
     select.select_by_visible_text("text")
     select.select_by_value(value)
     deselect_all()
+    
+    
+    # code of page
+    page_source = driver.page_source
 
 
 finally:
