@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 proxy = ['x.xxx.xx.xx:xx']
@@ -56,8 +57,8 @@ try:
     browser.find_element(By.XPATH, "//div[@class='text']/p[2]")
     
     wait.until(EC.element_to_be_clickable((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()
-    WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()   # from selenium.webdriver.support.ui import WebDriverWait
-    
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()   # from selenium.webdriver.support.ui import WebDriverWait
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//tag[@attribute="name_attribute"]'))).click()
 
     browser.find_elements(By.XPATH, "//div[@class='text']/p[2]")
     print(sum([int(x.text) for x in browser.find_elements(By.XPATH, "//div[@class='text']/p[2]")]))
