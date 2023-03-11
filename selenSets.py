@@ -23,7 +23,9 @@ url = 'https://some.url'
 
 try:
     # browser = webdriver.Chrome('chromedriver.exe')
-
+    # browser = webdriver.Chrome(executable_path='chromedriver.exe')
+    
+    
     s = Service(executable_path='chromedriver.exe')
     browser = webdriver.Chrome(service=s, options=options_chrome)
 
