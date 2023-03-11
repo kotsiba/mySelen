@@ -83,6 +83,7 @@ try:
     browser.execute_script("script_code")
     element = browser.find_element(By.XPATH, "//tag[@attribute='attr_name']")
     browser.execute_script("return arguments[0].scrollIntoView(true);", element)    # for element will in view space
+    element.click()
 
     browser.execute_script("return document.title;")  # return title of open document
 
